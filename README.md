@@ -25,7 +25,6 @@ This repo is validated via `terraform validate` and static security scanning (`t
 ## Structure
 modules/network-objects/ → network and host object definitions
 modules/firewall-rules/ → rulebase (deny-by-default, least privilege)
-modules/nat-rules/ → NAT policy
 environments/ → per-environment variables
 
 
