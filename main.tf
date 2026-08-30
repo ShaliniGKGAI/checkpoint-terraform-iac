@@ -25,6 +25,6 @@ module "network_objects" {
 module "firewall_rules" {
   source = "./modules/firewall-rules"
 
-  environment      = var.environment
-  network_objects  = module.network_objects
+  environment     = var.environment
+  network_objects = module.network_objects
 }

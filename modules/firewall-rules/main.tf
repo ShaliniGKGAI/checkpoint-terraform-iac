@@ -10,7 +10,7 @@ resource "checkpoint_management_access_rule" "allow_internal_to_dmz_web" {
   destination = ["host-web-${var.environment}"]
   service     = ["https"]
   action      = "Accept"
-  track       = "Log"
+  track       = { type = "Log" }
   comments    = "SK Corp: allow internal users to reach DMZ web server over HTTPS only"
 }
 
@@ -23,7 +23,7 @@ resource "checkpoint_management_access_rule" "allow_mgmt_to_all" {
   destination = ["Any"]
   service     = ["ssh", "https"]
   action      = "Accept"
-  track       = "Log"
+  track       = { type = "Log" }
   comments    = "SK Corp: management segment allowed admin access (SSH/HTTPS) for security operations"
 }
 
@@ -36,6 +36,6 @@ resource "checkpoint_management_access_rule" "deny_all" {
   destination = ["Any"]
   service     = ["Any"]
   action      = "Drop"
-  track       = "Log"
+  track       = { type = "Log" }
   comments    = "SK Corp: explicit deny-all baseline rule - default-deny posture, all traffic logged"
 }
