@@ -9,6 +9,28 @@ This repo demonstrates managing Checkpoint firewall policy using Infrastructure 
 As a network security engineer working operationally with Checkpoint firewalls, I built this to demonstrate how firewall policy — network objects, segmentation, and rules — can be version-controlled, peer-reviewed, and validated automatically, the same way application infrastructure is.
 
 ## Architecture
+```mermaid
+graph TB
+    Internet([Internet])
+    FW{{Checkpoint Firewall<br/>SK Corp Security Gateway}}
+
+    subgraph DMZ["DMZ Zone - 10.10.10.0/24"]
+        WEB[Web Server<br/>10.10.10.10]
+    end
+
+    subgraph INT["Internal Zone - 10.10.20.0/24"]
+        WS[Workstations and Internal Servers]
+    end
+
+    subgraph MGMT["Management Zone - 10.10.99.0/28"]
+        ADM[Security and Infra Admins]
+    end
+
+    Internet --- FW
+    FW --- DMZ
+    FW --- INT
+    FW --- MGMT
+```
 A synthetic company, **SK Corp**, with three-zone network segmentation:
 - **DMZ** (`10.10.10.0/24`) — internet-facing hosts only
 - **Internal** (`10.10.20.0/24`) — internal workstations/servers, no direct internet exposure
